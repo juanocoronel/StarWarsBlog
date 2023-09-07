@@ -1,3 +1,5 @@
+import axios from "axios";
+let url = 'https://probable-adventure-r4ggq64rwgwxcx4wg-3000.app.github.dev/'
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -11,7 +13,101 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorito: [],
 
 		},
-		actions: {
+		actions: { // Función para registrar a un usuario
+			signin: async (nombre, Apellido, emailR, passwordR) => {
+				try {
+					// Realizar una solicitud POST a la URL de registro
+					let data = await axios.post(url + '/signup', {
+						'nombre': nombre,
+						'apellido': Apellido,
+						'email': emailR,
+						'password': passwordR
+					});
+					// Imprimir la respuesta en la consola
+					console.log(data);
+					return true;
+				} catch (error) {
+					// Capturar y manejar errores
+					console.log(error);
+					if (error.response.status === 404) {
+						alert(error.response.data.msj); // Mostrar una alerta si el código de estado es 404
+					}
+					return false;
+				}
+			},
+
+			// Función para iniciar sesión
+			login: async (email, password) => {
+				try {
+					// Realizar una solicitud POST a la URL de inicio de sesión
+					let data = await axios.post(url + '/login', {
+						"email": email,
+						"password": password
+					});
+					// Imprimir la respuesta en la consola
+					console.log(data);
+					// Almacenar el token en el localStorage
+					localStorage.setItem("token", data.data.access_token);
+					// Establecer la variable de estado 'auth' en true
+					setStore({ auth: true });
+					return true;
+				} catch (error) {
+					// Capturar y manejar errores
+					// console.log(error);
+					if (error.response.status === 404) {
+						    alert(error.response.data.msj); // Mostrar una alerta si el código de estado es 404
+					}
+					return false;
+				}
+			},
+
+			// Función para cerrar sesión
+			logout: async () => {
+				// Eliminar el token del localStorage
+				localStorage.removeItem('token');
+				// Establecer la variable de estado 'auth' en false
+				setStore({ auth: false });
+			},
+
+			// Función para obtener el perfil del usuario
+			getPerfil: async () => {
+				try {
+					// Realizar una solicitud GET para obtener el perfil del usuario
+					let data = await axios.get('https://probable-adventure-r4ggq64rwgwxcx4wg-3000.app.github.dev/perfil', {
+						headers: { "Authorization": "Bearer " + localStorage.getItem('token') }
+					});
+					// Imprimir la respuesta en la consola
+					console.log(data);
+					return true;
+				} catch (error) {
+					// Capturar y manejar errores
+					console.log(error);
+					return false;
+				}
+			},
+
+			// Función para verificar la validez del token
+			validToken: async () => {
+				try {
+					// Realizar una solicitud GET para verificar la validez del token
+					let data = await axios.get('https://probable-adventure-r4ggq64rwgwxcx4wg-3000.app.github.dev/valid-token', {
+						headers: { "Authorization": "Bearer " + localStorage.getItem('token') }
+					});
+					// Imprimir la respuesta en la consola
+					console.log(data);
+					console.log('valido');
+					// Establecer la variable de estado 'auth' en true
+					setStore({ auth: true });
+					return true;
+				} catch (error) {
+					// Capturar y manejar errores
+					console.log(error);
+					return false;
+				}
+			},
+
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -37,6 +133,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 
 			},
+
+
+
+
 
 
 			/* personas */
