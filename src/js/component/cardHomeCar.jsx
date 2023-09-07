@@ -24,9 +24,9 @@ export const HomeCardCar = props => {
 
     return (
         <div>
-            <div className="card mx-3" style={{ width: "18rem", flex: '0 0 250px' }}>
+            <div className="card mx-3 bg-dark bg-opacity-75" style={{ width: "18rem", flex: '0 0 250px' }}>
                 <img src={imagen} className="card-img-top" alt='imagen' />
-                <div className="card-body">
+                <div className="card-body text-white">
                     <h5 className="card-title">{props.name}</h5>
                     <div className="mb-3">
                         <label>Name: </label><span> {props.name}</span><br />

@@ -15,14 +15,15 @@ export const Navbar = () => {
 			<nav className="navbar navbar-light mb-3" style={{ padding: "0px 180px 0px 180px" }}>
 				<a href="/">
 					<img
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/2560px-Star_Wars_Logo.svg.png"
+						src="https://logodownload.org/wp-content/uploads/2015/12/star-wars-logo-3-1.png"
 						alt="logoStarWars"
 						style={{ width: '100px', height: 'auto' }}
 					/>
 				</a>
+				<div className="d-flex justify-content-between my-3">
 				<div className="dropdown">
 					<button
-						className="btn btn-primary dropdown-toggle"
+						className="btn btn-warning dropdown-toggle me-3"
 						type="button"
 						id="dropdownMenuButton1"
 						data-bs-toggle="dropdown"
@@ -46,6 +47,7 @@ export const Navbar = () => {
 							)
 						})}
 					</ul>
+				</div>
 				</div>
 				<Link to={"/login"}>
 					<button className="btn btn-warning" type="button" onClick={() => actions.logout()}>

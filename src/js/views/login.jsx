@@ -22,6 +22,7 @@ export const Login = () => {
 
 
     async function submitLogin(e){
+        console.log("holaloding")
         e.preventDefault();
         let logged = await actions.login(email, password);
         if (logged === true) {
@@ -81,7 +82,7 @@ export const Login = () => {
                 <div className={"tab-pane fade " + login} id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                     <form onSubmit={(e) => {submitLogin(e)}}>
                         <div className="form-outline mb-4">
-                            <input type="email" id="loginName" className="form-control" onChange={(e)=>{setEmail(e.target.value)}}/>
+                            <input type="" id="loginName" className="form-control" onChange={(e)=>{setEmail(e.target.value)}}/>
                             <label className="form-label" htmlFor="loginName">Email</label>
                         </div>
                         <div className="form-outline mb-4">
@@ -164,7 +165,7 @@ export const Login = () => {
                         <div className="text-center mb-3">
                             <p>Sign up with:</p>
                             <button type="button" className="btn btn-link btn-floating mx-1">
-                                <i className="fab fa-facebook-f"></i>
+                                <i className="fab fa-facebook-f text"></i>
                             </button>
 
                             <button type="button" className="btn btn-link btn-floating mx-1">

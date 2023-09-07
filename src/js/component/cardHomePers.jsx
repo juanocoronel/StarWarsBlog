@@ -25,9 +25,9 @@ export const HomeCardPers = props => {
 
     return (
         <div>
-            <div className="card mx-3" style={{ width: "18rem", flex: '0 0 250px' }}>
+            <div className="card mx-3 bg-dark bg-opacity-75" style={{ width: "18rem", flex: '0 0 250px' }}>
                 <img src={"https://starwars-visualguide.com/assets/img/characters/" + (props.index + 1) + ".jpg"} className="card-img-top" alt='imagen' />
-                <div className="card-body">
+                <div className="card-body text-white">
                     <h5 className="card-title">{props.name}</h5>
                     <div className="mb-3">
                         <label>Genre: </label><span> {props.gender}</span><br />

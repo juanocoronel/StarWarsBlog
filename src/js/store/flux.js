@@ -1,5 +1,5 @@
 import axios from "axios";
-let url = 'https://probable-adventure-r4ggq64rwgwxcx4wg-3000.app.github.dev/'
+let url = 'https://probable-adventure-r4ggq64rwgwxcx4wg-3000.app.github.dev'
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -14,14 +14,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: { // Función para registrar a un usuario
-			signin: async (nombre, Apellido, emailR, passwordR) => {
+			signin: async (name, last_name, email, password) => {
 				try {
 					// Realizar una solicitud POST a la URL de registro
 					let data = await axios.post(url + '/signup', {
-						'nombre': nombre,
-						'apellido': Apellido,
-						'email': emailR,
-						'password': passwordR
+						'name': name,
+						'last_name': last_name,
+						'email': email,
+						'password': password
 					});
 					// Imprimir la respuesta en la consola
 					console.log(data);
